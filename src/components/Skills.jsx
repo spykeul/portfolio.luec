@@ -1,42 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Javascriptlogo from "../imgs/Javascript_logo.webp"
 import Reactlogo from "../imgs/React.js_logo.webp"
 import Tailwindlogo from "../imgs/tailwind_logo.webp"
+import SkillOverlay from './SkillOverlay'
+import { skillsData } from '../skillsData'
 
 
 const Skills = () => {
-  return (
-    <div className='w-full h-screen p-14 bg-purple-400 text-black rounded-tl-3xl rounded-tr-3xl'>
-       <div className='border-b-[1px] pb-8 border-purple-300'>
-          <h1 className='text-6xl font-custom2 font-semibold'>Skills</h1>
-       </div> 
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
-       <div className='circles flex  justify-around gap-10  mt-16 text-white'>
-        <div className='javascript font-custom2 bg-zinc-900 w-[20vw] h-[60vh] p-10 rounded rounded-tl-3xl rounded-br-3xl'>
-          <img className='w-[18vw] h-[26vh]  mt-[-20px]' src={Javascriptlogo} alt=""/>
-          <h1 className=' text-2xl font-medium'>JAVASCRIPT</h1>
-          <h1 className=' mt-1'>A versatile and powerful language that drives interactivity on the web. Skilled in using 
-            JavaScript for both front-end and back-end development.</h1>
+  const handleSkillClick = (skillId) => {
+    const skill = skillsData.find(s => s.id === skillId);
+    setSelectedSkill(skill);
+  };
+
+  const handleCloseOverlay = () => {
+    setSelectedSkill(null);
+  };
+
+  return (
+    <div id="skills" className='w-full min-h-screen px-8 md:px-20 py-20 bg-zinc-900 rounded-tl-3xl rounded-tr-3xl border-t border-zinc-700'>
+      <div className='border-b-[1px] pb-10 border-zinc-700 mb-16'>
+        <h1 className='text-5xl md:text-6xl font-custom2 font-semibold text-royal-blue'>Skills</h1>
+        <p className='text-gray-400 mt-4 text-lg'>Click on a skill to explore my learning journey</p>
+      </div>
+
+      <div className='circles flex flex-col md:flex-row justify-center gap-8 md:gap-10 text-white'>
+        <div
+          onClick={() => handleSkillClick('javascript')}
+          className='javascript font-custom2 bg-zinc-800 w-full md:w-[28vw] min-h-[480px] p-8 md:p-10 rounded-2xl border border-zinc-700 hover:border-metallic-gray hover:scale-105 transition-all duration-300 shadow-metallic hover:shadow-metallic-lg cursor-pointer group'>
+          <img className='w-full md:w-[18vw] h-auto max-h-[200px] object-contain mb-6 group-hover:scale-110 transition-transform duration-300' src={Javascriptlogo} alt="JavaScript" />
+          <h1 className='text-2xl md:text-3xl font-medium text-royal-blue mb-3'>JAVASCRIPT</h1>
+          <p className='text-base md:text-lg text-gray-300 leading-relaxed'>A versatile and powerful language that drives interactivity on the web. Skilled in using
+            JavaScript for both front-end and back-end development.</p>
+          <div className='mt-4 text-sm text-royal-blue font-semibold'>Click to explore →</div>
         </div>
-        
-        <div className='javascript font-custom2 bg-zinc-900 w-[20vw] h-[60vh] p-10  rounded rounded-tl-3xl rounded-br-3xl'>
-           <img className='w-[12vw] h-[12vh]  ml-5 mt-[16px]' src={Tailwindlogo} alt="" />
-           <div className='note2 mt-16'>
-             <h1 className=' text-2xl font-medium'>TAILWIND CSS</h1>
-             <h1 className=' mt-1'>A utility-first CSS framework that makes styling websites faster and more efficient. 
-                 Proficient in using Tailwind to create responsive, modern designs with minimal effort.</h1>
-           </div> 
-        </div>
-        
-        <div className='javascript font-custom2 bg-zinc-900 w-[20vw] h-[60vh] p-10 rounded rounded-tl-3xl rounded-br-3xl'>
-          <img className='w-[14vw] h-[18vh] mb-5' src={Reactlogo} alt="" />
-          <div className='note3 mt-8'>
-            <h1 className='text-2xl font-medium'>REACT.JS</h1>
-            <h1 className='mt-1'>A popular JavaScript library for building dynamic and responsive user interfaces. Experienced in 
-               creating reusable components and managing state with React.</h1>
+
+        <div
+          onClick={() => handleSkillClick('tailwind')}
+          className='javascript font-custom2 bg-zinc-800 w-full md:w-[28vw] min-h-[480px] p-8 md:p-10 rounded-2xl border border-zinc-700 hover:border-metallic-gray hover:scale-105 transition-all duration-300 shadow-metallic hover:shadow-metallic-lg cursor-pointer group'>
+          <img className='w-full md:w-[12vw] h-auto max-h-[140px] object-contain mx-auto mb-6 mt-4 group-hover:scale-110 transition-transform duration-300' src={Tailwindlogo} alt="Tailwind CSS" />
+          <div className='note2'>
+            <h1 className='text-2xl md:text-3xl font-medium text-royal-blue mb-3'>TAILWIND CSS</h1>
+            <p className='text-base md:text-lg text-gray-300 leading-relaxed'>A utility-first CSS framework that makes styling websites faster and more efficient.
+              Proficient in using Tailwind to create responsive, modern designs with minimal effort.</p>
+            <div className='mt-4 text-sm text-royal-blue font-semibold'>Click to explore →</div>
           </div>
         </div>
-       </div>
+
+        <div
+          onClick={() => handleSkillClick('react')}
+          className='javascript font-custom2 bg-zinc-800 w-full md:w-[28vw] min-h-[480px] p-8 md:p-10 rounded-2xl border border-zinc-700 hover:border-metallic-gray hover:scale-105 transition-all duration-300 shadow-metallic hover:shadow-metallic-lg cursor-pointer group'>
+          <img className='w-full md:w-[14vw] h-auto max-h-[180px] object-contain mb-6 group-hover:scale-110 transition-transform duration-300' src={Reactlogo} alt="React.js" />
+          <div className='note3'>
+            <h1 className='text-2xl md:text-3xl font-medium text-royal-blue mb-3'>REACT.JS</h1>
+            <p className='text-base md:text-lg text-gray-300 leading-relaxed'>A popular JavaScript library for building dynamic and responsive user interfaces. Experienced in
+              creating reusable components and managing state with React.</p>
+            <div className='mt-4 text-sm text-royal-blue font-semibold'>Click to explore →</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Skill Overlay Modal */}
+      {selectedSkill && (
+        <SkillOverlay skill={selectedSkill} onClose={handleCloseOverlay} />
+      )}
     </div>
   )
 }
